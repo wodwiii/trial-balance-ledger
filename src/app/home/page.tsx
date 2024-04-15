@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import Journals from "./Journals"
 
 export default function Dashboard() {
   return (
@@ -156,10 +157,7 @@ export default function Dashboard() {
           </div>
           <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm">
             <div className="flex flex-col items-center gap-1 text-center">
-              <h3 className="text-2xl font-bold tracking-tight">
-                You have not yet created a journal.
-              </h3>
-              <Button className="mt-4">Add Journal</Button>
+              <Journals/>
             </div>
           </div>
         </main>
