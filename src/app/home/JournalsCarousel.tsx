@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import { format } from 'date-fns';
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,12 +15,12 @@ import { useEffect, useState } from "react";
 
 const JournalsCarousel = ({ openModal }: { openModal: () => void }) => {
   const [journals, setJournals] = useState<any[]>([]);
-  const email = localStorage.getItem("email");
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchJournals = async () => {
       try {
+        const email = localStorage.getItem("email");
         const loadedJournals = await LoadJournals(email);
         console.log("Loaded Journals:", loadedJournals);
         setJournals(loadedJournals);
@@ -29,10 +30,8 @@ const JournalsCarousel = ({ openModal }: { openModal: () => void }) => {
         setIsLoading(false);
       }
     };
-    if (email) {
       fetchJournals();
-    }
-  }, [email]);
+  });
 
   return (
     <>

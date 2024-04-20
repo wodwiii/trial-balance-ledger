@@ -19,17 +19,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import Journals from "./Journals"
-import RouteCheck from "@/services/RouteCheck"
-import { useRouter } from "next/navigation"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import Journals from "./Journals";
 
 export default function Dashboard() {
-  const router = useRouter();
-  const routeCheck = RouteCheck();
-  if(!routeCheck){
-    router.push("/");
-  }
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
