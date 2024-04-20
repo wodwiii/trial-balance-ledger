@@ -12,11 +12,12 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import JournalsCarousel from "./JournalsCarousel";
 
 const Journals = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const titleRef = useRef<HTMLInputElement>(null);
-
+  const email = localStorage.getItem("email");
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -29,7 +30,7 @@ const Journals = () => {
     e.preventDefault();
     const title = titleRef.current?.value;
     console.log(`Title: ${title}`);
-    await CreateJournals(title);
+    await CreateJournals(title,email);
     closeModal();
   };
 
@@ -37,13 +38,8 @@ const Journals = () => {
     <>
       {!isModalOpen && (
         <div>
-          <h3 className="text-2xl font-bold tracking-tight">
-            You have not yet created a journal.
-          </h3>
-          <Button onClick={openModal} className="mt-4">
-            Add Journal
-          </Button>
-        </div>
+         <JournalsCarousel openModal={openModal} />
+       </div>
       )}
 
       {isModalOpen && (

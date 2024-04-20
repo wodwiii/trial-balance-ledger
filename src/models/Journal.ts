@@ -1,13 +1,5 @@
 import mongoose, { Document } from 'mongoose';
 
-export interface JournalDocument extends Document {
-  title: string;
-  owner: string;
-  date_created: Date;
-  tbl: string;
-  entries: any[];
-}
-
 const journalSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -25,4 +17,4 @@ const journalSchema = new mongoose.Schema({
   tbl: String,
   entries: [Object],
 });
-export const Journal = mongoose.model<JournalDocument>('journal', journalSchema);
+export const Journal = mongoose.model('journal', journalSchema);

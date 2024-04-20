@@ -1,9 +1,9 @@
+"use client"
 import Link from "next/link"
 import {
   CircleUser,
   Home,
   Menu,
-  Search,
   NotebookText,
   Newspaper,
   Info,
@@ -12,13 +12,6 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -26,11 +19,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Journals from "./Journals"
+import RouteCheck from "@/services/RouteCheck"
+import { useRouter } from "next/navigation"
 
 export default function Dashboard() {
+  const router = useRouter();
+  const routeCheck = RouteCheck();
+  if(!routeCheck){
+    router.push("/");
+  }
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
