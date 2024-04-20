@@ -1,20 +1,14 @@
 "use server"
-import { Db, MongoClient } from 'mongodb';
-
-let cachedClient: MongoClient | null = null;
-let cachedDb: Db | null = null;
-
+import mongoose from 'mongoose';
+let cachedConnection: typeof mongoose | null = null;
 export const connectToDatabase = async () => {
-  if (cachedClient && cachedDb) {
-    return { client: cachedClient, db: cachedDb };
+  if (cachedConnection) {
+    return cachedConnection;
   }
-
   if (!process.env.MONGODB_URI) {
     throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
   }
-  const client = await MongoClient.connect(process.env.MONGODB_URI);
-  const db = client.db('TBLData');
-  cachedClient = client;
-  cachedDb = db;
-  return { client, db };
+  const connection = await mongoose.connect(process.env.MONGODB_URI);
+  cachedConnection = connection;
+  return connection;
 };
