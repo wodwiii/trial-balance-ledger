@@ -302,7 +302,7 @@ export function JournalTable({ journal }: { journal: Journal }) {
                           <DialogTitle>Edit Entry</DialogTitle>
                           <DialogDescription>
                             Make changes to selected entry. Click save when
-                            you're done.
+                            you&apos;re done.
                           </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
@@ -372,7 +372,7 @@ export function JournalTable({ journal }: { journal: Journal }) {
           <DialogHeader>
             <DialogTitle>Add Transaction</DialogTitle>
             <DialogDescription>
-              Add new transactions to this journal. Click save when you're done.
+              Add new transactions to this journal. Click save when you&apos;re done.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
