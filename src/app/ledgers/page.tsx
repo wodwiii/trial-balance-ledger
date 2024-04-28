@@ -8,8 +8,7 @@ import {
   Info,
 } from "lucide-react";
 
-import logo from "../../../public/logo.png";
-import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -20,13 +19,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import Journals from "./Journals";
+import Ledgers from "./Ledgers";
 import { useRouter } from "next/navigation";
+import logo from "../../../public/logo.png";
+import Image from "next/image";
 
-export default function Dashboard() {
+export default function Ledger() {
   const router = useRouter();
-  const handleOpenJournal = (journal: any) => {
-    router.push(`/journals/${journal}`);
+  const handleOpenJournal = (ledger: any) => {
+    router.push(`/ledgers/${ledger}`);
   };
   const handleLogout = () =>{
     localStorage.removeItem("id");
@@ -37,11 +38,11 @@ export default function Dashboard() {
       <div className="hidden border-r bg-muted/40 md:block">
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
-              <div className="w-12 rounded ">
+            <Link href="/" className="flex items-center gap-2 font-semibold">
+                <div className="w-12 rounded ">
                 <Image src={logo} alt={""} />
               </div>
-            <Link href="/" className="flex items-center gap-2 font-semibold">
-              <span className="ml-2">Trial Balance Ledger</span>
+              <span className="">Trial Balance Ledger</span>
             </Link>
           </div>
           <div className="flex-1">
@@ -140,11 +141,11 @@ export default function Dashboard() {
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
           <div className="flex items-center">
-            <h1 className="text-lg font-semibold md:text-2xl">Home</h1>
+            <h1 className="text-lg font-semibold md:text-2xl">Ledgers</h1>
           </div>
           <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm">
             <div className="items-center gap-1 text-center">
-              <Journals onJournalClick={handleOpenJournal} />
+              <Ledgers onJournalClick={handleOpenJournal} />
             </div>
           </div>
         </main>

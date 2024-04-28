@@ -1,8 +1,7 @@
 const RouteCheck = () =>{
     try {
-        const email = localStorage.getItem("email");
-        const password = localStorage.getItem("pass");
-        if(email && password){
+        const id = localStorage.getItem("id");
+        if(id){
             return true;
         }
     } catch (error) {

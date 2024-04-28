@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-context-menu": "^2.1.5",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
     "@types/mongoose": "^5.11.97",
@@ -19,17 +21,19 @@
     "clsx": "^2.1.0",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.0.2",
+    "json2csv": "^6.0.0-alpha.2",
     "lucide-react": "^0.363.0",
-    "mongodb": "^6.5.0",
-    "mongoose": "^8.3.2",
     "next": "14.1.4",
     "next-themes": "^0.3.0",
     "react": "^18",
+    "react-day-picker": "^8.10.1",
     "react-dom": "^18",
     "tailwind-merge": "^2.2.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@types/json2csv": "^5.0.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

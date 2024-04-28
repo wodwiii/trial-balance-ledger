@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import CreateJournals from "@/services/CreateJournal";
+import { createJournal } from "@/services/createJournal";
 import {
   Card,
   CardContent,
@@ -14,10 +14,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import JournalsCarousel from "./JournalsCarousel";
 
-const Journals = () => {
+const Journals = ({onJournalClick}:any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const titleRef = useRef<HTMLInputElement>(null);
-  const email = localStorage.getItem("email");
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -28,9 +27,10 @@ const Journals = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const owner = localStorage.getItem("id");
     const title = titleRef.current?.value;
     console.log(`Title: ${title}`);
-    await CreateJournals(title,email);
+    await createJournal(title, owner);
     closeModal();
   };
 
@@ -38,7 +38,7 @@ const Journals = () => {
     <>
       {!isModalOpen && (
         <div>
-         <JournalsCarousel openModal={openModal} />
+         <JournalsCarousel openModal={openModal} onJournalClick={onJournalClick}/>
        </div>
       )}
 

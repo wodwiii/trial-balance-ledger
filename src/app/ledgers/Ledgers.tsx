@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { loadJournals } from "@/services/loadJournals";
+import { loadTB } from "@/services/loadTB";
 import { Label } from "@radix-ui/react-label";
 import { useEffect, useState } from "react";
 
@@ -18,16 +18,16 @@ interface JournalsCarouselProps {
   openModal: () => void;
 }
 
-const JournalsCarousel: React.FC<JournalsCarouselProps> = ({ onJournalClick, openModal }) => {
+const JournalsCarousel: React.FC<JournalsCarouselProps> = ({ onJournalClick }) => {
   const [journals, setJournals] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
     const fetchJournals = async () => {
       try {
         const owner = localStorage.getItem("id");
-        const loadedJournals = await loadJournals(owner);
-        console.log("Loaded Journals:", loadedJournals);
-        setJournals(loadedJournals);
+        const loadedTB = await loadTB(owner);
+        console.log("Loaded TB:", loadedTB);
+        setJournals(loadedTB.trialBalance);
         setIsLoading(false);
       } catch (error) {
         console.error("Error loading journals:", error);
@@ -44,16 +44,13 @@ const JournalsCarousel: React.FC<JournalsCarouselProps> = ({ onJournalClick, ope
       ) : journals?.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-full">
           <h3 className="text-2xl font-bold tracking-tight">
-            You have not yet created a journal.
+            You don't have any generated Trial Balance.
           </h3>
-          <Button onClick={openModal} className="mt-4">
-            Add Journal
-          </Button>
         </div>
       ) : (
         <div>
         <Label className="my-16 text-3xl font-bold">
-            List of Journals
+            List of Trial Balance
         </Label>    
         <Carousel
           opts={{
@@ -83,9 +80,6 @@ const JournalsCarousel: React.FC<JournalsCarouselProps> = ({ onJournalClick, ope
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-        <Button onClick={openModal} className="mt-4">
-            Add Journal
-          </Button>
         </div>
       )}
     </>

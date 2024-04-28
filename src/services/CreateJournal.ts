@@ -1,27 +1,22 @@
-"use server"
-import { connectToDatabase } from './db';
-import { Journal } from '../models/Journal';
-import { JournalDocument } from '../models/interface/Journal';
-import { User } from '@/models/User';
-
-export default async function CreateJournals(title: any, email:any) {
-  try {
-    const connection = await connectToDatabase();
-    const JournalModel = connection.model<JournalDocument>('journal');
-    const newJournalData = {
-      title,
-      owner: email,
-      date_created: new Date(),
-      tbl: '',
-      entries: [],
-    };
-    const newJournal = await Journal.create(newJournalData);
-    await User.updateOne(
-        {email: email},
-        {$push: {journals: newJournal._id}}
-    );
-    console.log('Journal created:', newJournal);
-  } catch (error) {
-    console.error('Error creating journal:', error);
+export async function createJournal(name: any, owner: any) {
+    try {
+      const response = await fetch('https://tbl-nodeserver.vercel.app/api/journals/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, owner }),
+      });
+  
+      if (response.ok) {
+        const journal = await response.json();
+        return journal;
+      } else {
+        console.error('Failed to create journal:', response.statusText);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error during journal creation:', error);
+      return null;
+    }
   }
-}
